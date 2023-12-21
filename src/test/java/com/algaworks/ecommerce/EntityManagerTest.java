@@ -6,7 +6,7 @@ import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
-class EntityManagerTest {
+public class EntityManagerTest {
 
   private static EntityManagerFactory entityManagerFactory;
   protected static EntityManager entityManager;
