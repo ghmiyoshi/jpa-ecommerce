@@ -8,11 +8,12 @@ import jakarta.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "produto")
 public class Produto {
 
   @Id
   private Long id;
+  private String nome;
   private String descricao;
   private BigDecimal preco;
 
@@ -22,6 +23,14 @@ public class Produto {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public void setNome(String nome) {
+    this.nome = nome;
+  }
+
+  public String getNome() {
+    return nome;
   }
 
   public String getDescricao() {
