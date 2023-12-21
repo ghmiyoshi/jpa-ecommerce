@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.iniciandocomjpa;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Produto;
@@ -8,6 +9,19 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 class OperacoesComTransacaoTest extends EntityManagerTest {
+
+  @Test
+  void abrirEFecharATransacao() {
+    // final var produto = new Produto();
+    entityManager.getTransaction().begin();
+
+    // código de inserção, atualização ou remoção
+    // entityManager.persist(produto);
+    // entityManager.merge(produto);
+    // entityManager.remove(produto);
+
+    entityManager.getTransaction().commit();
+  }
 
   @Test
   void inserirOPrimeiroObjeto() {
@@ -29,15 +43,14 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
   }
 
   @Test
-  void abrirEFecharATransacao() {
-    // final var produto = new Produto();
+  void removerObjeto() {
+    final var produto = entityManager.find(Produto.class, 2L);
+
     entityManager.getTransaction().begin();
-
-    // código de inserção, atualização ou remoção
-    // entityManager.persist(produto);
-    // entityManager.merge(produto);
-    // entityManager.remove(produto);
-
+    entityManager.remove(produto);
     entityManager.getTransaction().commit();
+
+    final var produtoVerificacao = entityManager.find(Produto.class, 2L);
+    assertNull(produtoVerificacao);
   }
 }
