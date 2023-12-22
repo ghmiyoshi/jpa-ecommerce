@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.EqualsAndHashCode;
@@ -15,6 +16,7 @@ public class Categoria {
   @Id
   private Long id;
   private String nome;
+  @Column(name = "categoria_pai_id")
   private Long categoriaPaiId;
 
 }
