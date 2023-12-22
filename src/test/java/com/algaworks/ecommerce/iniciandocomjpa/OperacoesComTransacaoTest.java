@@ -40,6 +40,7 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
     entityManager.clear();
 
     final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+
     assertNotNull(produtoVerificacao);
   }
 
@@ -52,6 +53,7 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
     entityManager.getTransaction().commit();
 
     final var produtoVerificacao = entityManager.find(Produto.class, 2L);
+
     assertNull(produtoVerificacao);
   }
 
@@ -123,6 +125,7 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
     entityManager.clear();
 
     final var produtoVerificacaoPersist = entityManager.find(Produto.class, produtoPersist.getId());
+
     assertNotNull(produtoVerificacaoPersist);
 
     var produtoMerge = new Produto();
@@ -138,6 +141,7 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
     entityManager.clear();
 
     final var produtoVerificacaoMerge = entityManager.find(Produto.class, produtoMerge.getId());
+
     assertNotNull(produtoVerificacaoMerge);
   }
 

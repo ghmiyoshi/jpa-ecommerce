@@ -32,10 +32,10 @@ class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
     entityManager.getTransaction().begin();
     entityManager.persist(pedido);
     entityManager.getTransaction().commit();
-
     entityManager.clear();
 
     final var pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+
     assertNotNull(pedidoVerificacao);
     assertNotNull(pedidoVerificacao.getEnderecoEntrega());
     assertNotNull(pedidoVerificacao.getEnderecoEntrega().getCep());
