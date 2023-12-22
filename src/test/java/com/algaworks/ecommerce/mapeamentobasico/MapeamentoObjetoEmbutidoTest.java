@@ -23,7 +23,6 @@ class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
     endereco.setEstado("MG");
 
     final var pedido = new Pedido();
-    pedido.setId(1L);
     pedido.setDataPedido(LocalDateTime.now());
     pedido.setStatus(StatusPedidoEnum.AGUARDANDO);
     pedido.setTotal(new BigDecimal(1000));

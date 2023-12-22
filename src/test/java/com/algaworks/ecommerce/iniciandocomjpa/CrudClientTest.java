@@ -8,12 +8,11 @@ import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Cliente;
 import org.junit.jupiter.api.Test;
 
-class CrudClient extends EntityManagerTest {
+class CrudClientTest extends EntityManagerTest {
 
   @Test
   void inserirPrimeiroCliente() {
     final var cliente = new Cliente();
-    cliente.setId(3L);
     cliente.setNome("Gabriel");
 
     entityManager.getTransaction().begin();
