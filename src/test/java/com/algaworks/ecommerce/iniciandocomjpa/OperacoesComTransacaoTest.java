@@ -140,4 +140,20 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
     final var produtoVerificacaoMerge = entityManager.find(Produto.class, produtoMerge.getId());
     assertNotNull(produtoVerificacaoMerge);
   }
+
+  @Test
+  void impedirOperacaoComBancoDeDados() {
+    final var produto = entityManager.find(Produto.class, 1L);
+    entityManager.detach(produto);
+
+    entityManager.getTransaction().begin();
+    produto.setNome("Kindle Paperwhite 2ª geração");
+    entityManager.getTransaction().commit();
+    entityManager.clear();
+
+    final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+
+    assertNotNull(produtoVerificacao);
+    assertEquals("Kindle", produtoVerificacao.getNome());
+  }
 }
