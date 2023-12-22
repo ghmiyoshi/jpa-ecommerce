@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -28,4 +29,6 @@ public class Pedido {
   private BigDecimal total;
   @Enumerated(EnumType.STRING)
   private StatusPedidoEnum status;
+  @Embedded
+  private Endereco enderecoEntrega;
 }

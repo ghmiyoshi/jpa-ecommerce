@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.iniciandocomjpa.mapeamentobasico;
+package com.algaworks.ecommerce.mapeamentobasico;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
