@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class EstrategiaChavePrimariaTest extends EntityManagerTest {
 
   @Test
-  void testarEstrategiaAuto() {
+  void testarEstrategias() {
     final var categoria = new Categoria();
     categoria.setNome("Eletrônicos");
 
@@ -22,5 +22,4 @@ class EstrategiaChavePrimariaTest extends EntityManagerTest {
 
     assertNotNull(categoriaVerificacao);
   }
-
 }
