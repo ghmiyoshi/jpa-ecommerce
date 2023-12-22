@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.iniciandocomjpa;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -52,5 +53,24 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
 
     final var produtoVerificacao = entityManager.find(Produto.class, 2L);
     assertNull(produtoVerificacao);
+  }
+
+  @Test
+  void atualizarObjeto() {
+    final var produto = new Produto();
+    produto.setId(1L);
+    produto.setNome("Kindle Paperwhite");
+    produto.setDescricao("Conheça o novo Kindle.");
+    produto.setPreco(new BigDecimal(599));
+
+    entityManager.getTransaction().begin();
+    entityManager.merge(produto);
+    entityManager.getTransaction().commit();
+    entityManager.clear();
+
+    final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+
+    assertNotNull(produtoVerificacao);
+    assertEquals("Kindle Paperwhite", produtoVerificacao.getNome());
   }
 }
