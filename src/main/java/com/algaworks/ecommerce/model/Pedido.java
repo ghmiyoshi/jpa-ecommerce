@@ -2,9 +2,10 @@ package com.algaworks.ecommerce.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,6 +26,6 @@ public class Pedido {
   @Column(name = "nota_fiscal_id")
   private Long notaFiscalId;
   private BigDecimal total;
+  @Enumerated(EnumType.STRING)
   private StatusPedidoEnum status;
-
 }

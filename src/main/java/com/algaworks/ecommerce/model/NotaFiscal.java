@@ -21,5 +21,4 @@ public class NotaFiscal {
   private String xml;
   @Column(name = "data_emissao")
   private LocalDateTime dataEmissao;
-
 }

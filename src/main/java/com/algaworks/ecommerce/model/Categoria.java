@@ -18,5 +18,4 @@ public class Categoria {
   private String nome;
   @Column(name = "categoria_pai_id")
   private Long categoriaPaiId;
-
 }

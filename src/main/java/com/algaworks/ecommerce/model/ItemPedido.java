@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,5 +23,4 @@ public class ItemPedido {
   @Column(name = "preco_produto")
   private BigDecimal precoProduto;
   private int quantidade;
-
 }

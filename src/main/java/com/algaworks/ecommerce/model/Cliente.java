@@ -17,8 +17,6 @@ public class Cliente {
   @Id
   private Long id;
   private String nome;
-
   @Enumerated(EnumType.STRING)
   private SexoEnum sexo;
-
 }

@@ -18,5 +18,4 @@ public class Estoque {
   @Column(name = "produto_id")
   private Long produtoId;
   private int quantidade;
-
 }
