@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
-import com.algaworks.ecommerce.model.Produto;
+import com.algaworks.ecommerce.models.Produto;
 import org.junit.jupiter.api.Test;
 
 class ConsultandoRegistrosTest extends EntityManagerTest {

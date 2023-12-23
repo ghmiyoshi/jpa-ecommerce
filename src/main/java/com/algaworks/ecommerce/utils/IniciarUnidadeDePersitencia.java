@@ -1,6 +1,6 @@
-package com.algaworks.ecommerce.util;
+package com.algaworks.ecommerce.utils;
 
-import com.algaworks.ecommerce.model.Produto;
+import com.algaworks.ecommerce.models.Produto;
 import jakarta.persistence.Persistence;
 
 public class IniciarUnidadeDePersitencia {

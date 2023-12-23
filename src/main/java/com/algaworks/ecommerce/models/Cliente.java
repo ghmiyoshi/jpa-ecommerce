@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.model;
+package com.algaworks.ecommerce.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -6,6 +6,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +24,6 @@ public class Cliente {
   private String nome;
   @Enumerated(EnumType.STRING)
   private SexoEnum sexo;
+  @OneToMany(mappedBy = "cliente")
+  private List<Pedido> pedidos;
 }

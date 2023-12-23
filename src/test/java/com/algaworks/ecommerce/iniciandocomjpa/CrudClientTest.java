@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
-import com.algaworks.ecommerce.model.Cliente;
+import com.algaworks.ecommerce.models.Cliente;
 import org.junit.jupiter.api.Test;
 
 class CrudClientTest extends EntityManagerTest {

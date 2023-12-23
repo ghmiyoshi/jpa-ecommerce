@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
-import com.algaworks.ecommerce.model.Produto;
+import com.algaworks.ecommerce.models.Produto;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 

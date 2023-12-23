@@ -3,9 +3,9 @@ package com.algaworks.ecommerce.mapeamentobasico;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
-import com.algaworks.ecommerce.model.Endereco;
-import com.algaworks.ecommerce.model.Pedido;
-import com.algaworks.ecommerce.model.StatusPedidoEnum;
+import com.algaworks.ecommerce.models.Endereco;
+import com.algaworks.ecommerce.models.Pedido;
+import com.algaworks.ecommerce.models.StatusPedidoEnum;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;

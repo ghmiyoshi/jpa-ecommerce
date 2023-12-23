@@ -1,11 +1,13 @@
-package com.algaworks.ecommerce.model;
+package com.algaworks.ecommerce.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.math.BigDecimal;
+import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,17 +15,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
-@Entity(name = "item_pedidos")
-public class ItemPedido {
+@Entity
+@Table(name = "pagamento_boletos")
+public class PagamentoBoleto {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
   @Column(name = "pedido_id")
   private Long pedidoId;
-  @Column(name = "produto_id")
-  private Long produtoId;
-  @Column(name = "preco_produto")
-  private BigDecimal precoProduto;
-  private int quantidade;
+  @Enumerated(EnumType.STRING)
+  private StatusPagamentoEnum status;
+  @Column(name = "codigo_barras")
+  private String codigoBarras;
 }

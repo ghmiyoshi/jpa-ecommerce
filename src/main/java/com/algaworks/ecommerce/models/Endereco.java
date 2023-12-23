@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.model;
+package com.algaworks.ecommerce.models;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

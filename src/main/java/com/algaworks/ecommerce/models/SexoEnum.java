@@ -1,4 +1,4 @@
-package com.algaworks.ecommerce.model;
+package com.algaworks.ecommerce.models;
 
 public enum SexoEnum {
 
