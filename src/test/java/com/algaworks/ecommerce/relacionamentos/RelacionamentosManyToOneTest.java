@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.relacionamentos;
 
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.AGUARDANDO;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
@@ -30,8 +31,10 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
     entityManager.clear();
 
     final var pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+    final var clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
 
     assertNotNull(pedidoVerificacao.getCliente());
+    assertFalse(clienteVerificacao.getPedidos().isEmpty());
   }
 
   @Test
