@@ -11,7 +11,6 @@ import com.algaworks.ecommerce.models.Pedido;
 import com.algaworks.ecommerce.models.Produto;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class RelacionamentosManyToOneTest extends EntityManagerTest {
@@ -62,7 +61,8 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
     entityManager.clear();
 
     final var itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
-    Assertions.assertNotNull(itemPedidoVerificacao.getPedido());
-    Assertions.assertNotNull(itemPedidoVerificacao.getProduto());
+
+    assertNotNull(itemPedidoVerificacao.getPedido());
+    assertNotNull(itemPedidoVerificacao.getProduto());
   }
 }
