@@ -5,3 +5,7 @@ INSERT INTO clientes (id, nome, sexo) VALUES (2, 'Marcos Mariano', 'MASCULINO');
 
 INSERT INTO pedidos (id, cliente_id, data_pedido, total, status) VALUES (1, 1, sysdate(), 100.0, 'AGUARDANDO');
 INSERT INTO item_pedidos (id, pedido_id, produto_id, preco_produto, quantidade) VALUES (1, 1, 1, 5.0, 2);
+
+INSERT INTO categorias (id, nome) VALUES (1, 'Eletrônicos');
+INSERT INTO categorias (id, nome) VALUES (2, 'Livros');
+INSERT INTO categorias (id, nome) VALUES (3, 'Informática');
