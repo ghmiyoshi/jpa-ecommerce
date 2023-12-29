@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,4 +44,7 @@ public class Pedido {
   private Cliente cliente;
   @OneToMany(mappedBy = "pedido")
   private List<ItemPedido> itens;
+
+  @OneToOne(mappedBy = "pedido")
+  private PagamentoCartao pagamentoCartao;
 }
