@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.EqualsAndHashCode;
@@ -30,4 +31,7 @@ public class Produto {
   @JoinTable(name = "produtos_categorias", joinColumns = @JoinColumn(name = "produto_id"),
       inverseJoinColumns = @JoinColumn(name = "categoria_id"))
   private List<Categoria> categorias;
+
+  @OneToOne(mappedBy = "produto")
+  private Estoque estoque;
 }

@@ -39,7 +39,7 @@ public class Pedido {
   private StatusPedidoEnum status;
   @Embedded
   private Endereco enderecoEntrega;
-  @ManyToOne
+  @ManyToOne(optional = false)
   @JoinColumn(name = "cliente_id")
   private Cliente cliente;
   @OneToMany(mappedBy = "pedido")
@@ -47,4 +47,7 @@ public class Pedido {
 
   @OneToOne(mappedBy = "pedido")
   private PagamentoCartao pagamentoCartao;
+
+  @OneToOne(mappedBy = "pedido")
+  private NotaFiscal notaFiscal;
 }

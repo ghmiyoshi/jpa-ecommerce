@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,4 +24,8 @@ public class NotaFiscal {
   private String xml;
   @Column(name = "data_emissao")
   private LocalDateTime dataEmissao;
+
+  @OneToOne(optional = false)
+  @JoinColumn(name = "pedido_id")
+  private Pedido pedido;
 }

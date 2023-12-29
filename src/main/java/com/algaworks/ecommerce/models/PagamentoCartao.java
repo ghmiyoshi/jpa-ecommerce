@@ -21,7 +21,7 @@ public class PagamentoCartao {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @OneToOne
+  @OneToOne(optional = false)
   @JoinColumn(name = "pedido_id")
   private Pedido pedido;
   @Enumerated(EnumType.STRING)

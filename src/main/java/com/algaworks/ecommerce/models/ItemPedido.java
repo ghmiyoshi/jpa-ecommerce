@@ -22,14 +22,14 @@ public class ItemPedido {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(optional = false)
   @JoinColumn(name = "pedido_id")
   private Pedido pedido;
 
-  @ManyToOne
+  @ManyToOne(optional = false)
   @JoinColumn(name = "produto_id")
   private Produto produto;
-  
+
   @Column(name = "preco_produto")
   private BigDecimal precoProduto;
   private int quantidade;
