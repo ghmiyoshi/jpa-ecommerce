@@ -19,7 +19,7 @@ class GerenciamentoTransacoesTest extends EntityManagerTest {
           GerenciamentoTransacoesTest::metodoDeNegocio);
       assertEquals("Pedido ainda não foi pago.", exception.getMessage());
       entityManager.getTransaction().commit();
-    } catch (Exception e) {
+    } catch (final Exception e) {
       entityManager.getTransaction().rollback();
     }
   }
