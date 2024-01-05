@@ -4,7 +4,7 @@ import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.Produto;
 import org.junit.jupiter.api.Test;
 
-class CachePrimeiroNivelTeste extends EntityManagerTest {
+class CachePrimeiroNivelTest extends EntityManagerTest {
 
   @Test
   void verificarCache() {
