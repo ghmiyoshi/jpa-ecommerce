@@ -39,6 +39,8 @@ public class Pedido {
   private StatusPedidoEnum status;
   @Embedded
   private Endereco enderecoEntrega;
+
+  /* Adicionando optional forca a execucao de um inner join que é um pouco mais performático */
   @ManyToOne(optional = false)
   @JoinColumn(name = "cliente_id")
   private Cliente cliente;

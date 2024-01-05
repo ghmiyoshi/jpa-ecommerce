@@ -3,6 +3,7 @@ package com.algaworks.ecommerce.mapeamentobasico;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.Endereco;
 import com.algaworks.ecommerce.models.Pedido;
 import com.algaworks.ecommerce.models.StatusPedidoEnum;
@@ -28,7 +29,12 @@ class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
     pedido.setTotal(new BigDecimal(1000));
     pedido.setEnderecoEntrega(endereco);
 
+    final var cliente = new Cliente();
+    cliente.setNome("Fernando Medeiros");
+
+    pedido.setCliente(cliente);
     entityManager.getTransaction().begin();
+    entityManager.persist(cliente);
     entityManager.persist(pedido);
     entityManager.getTransaction().commit();
     entityManager.clear();
