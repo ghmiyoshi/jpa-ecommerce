@@ -9,10 +9,10 @@ import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.Pedido;
 import org.junit.jupiter.api.Test;
 
-class CallbacksTest extends EntityManagerTest {
+class ListenerTest extends EntityManagerTest {
 
   @Test
-  void acionarCallbacks() {
+  void acionarListener() {
     final var cliente = entityManager.find(Cliente.class, 1);
 
     final var pedido = new Pedido();

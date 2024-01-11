@@ -1,10 +1,13 @@
 package com.algaworks.ecommerce.models;
 
+import static com.algaworks.ecommerce.models.StatusPedidoEnum.PAGO;
 import static java.util.Objects.nonNull;
 
+import com.algaworks.ecommerce.listeners.GerarNotaFiscalListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +29,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
+@EntityListeners(GerarNotaFiscalListener.class)
 @Entity(name = "pedidos")
 public class Pedido {
 
@@ -80,5 +84,9 @@ public class Pedido {
       total = itens.stream().map(ItemPedido::getPrecoProduto)
           .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+  }
+
+  public boolean isPago() {
+    return PAGO.equals(status);
   }
 }
