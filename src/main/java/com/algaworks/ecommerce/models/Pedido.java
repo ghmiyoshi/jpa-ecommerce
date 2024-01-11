@@ -1,5 +1,7 @@
 package com.algaworks.ecommerce.models;
 
+import static java.util.Objects.nonNull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -12,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -52,4 +56,29 @@ public class Pedido {
 
   @OneToOne(mappedBy = "pedido")
   private NotaFiscal notaFiscal;
+
+  @Column(name = "data_criacao")
+  private LocalDateTime dataCriacao;
+
+  @Column(name = "data_ultima_atualizacao")
+  private LocalDateTime dataUltimaAtualizacao;
+
+  @PrePersist
+  public void prePersist() {
+    this.setDataCriacao(LocalDateTime.now());
+    this.calcularTotal();
+  }
+
+  @PreUpdate
+  public void preUpdate() {
+    this.setDataUltimaAtualizacao(LocalDateTime.now());
+    this.calcularTotal();
+  }
+
+  private void calcularTotal() {
+    if (nonNull(itens)) {
+      total = itens.stream().map(ItemPedido::getPrecoProduto)
+          .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+  }
 }
