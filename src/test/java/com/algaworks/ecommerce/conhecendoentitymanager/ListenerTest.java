@@ -7,9 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.Pedido;
+import com.algaworks.ecommerce.models.Produto;
 import org.junit.jupiter.api.Test;
 
 class ListenerTest extends EntityManagerTest {
+
+  @Test
+  void carregarEntidades() {
+    final var pedido = entityManager.find(Pedido.class, 1);
+    final var produto = entityManager.find(Produto.class, 1);
+  }
 
   @Test
   void acionarListener() {

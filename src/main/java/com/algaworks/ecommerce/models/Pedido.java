@@ -3,6 +3,7 @@ package com.algaworks.ecommerce.models;
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.PAGO;
 import static java.util.Objects.nonNull;
 
+import com.algaworks.ecommerce.listeners.GenericoListener;
 import com.algaworks.ecommerce.listeners.GerarNotaFiscalListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -29,7 +30,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
-@EntityListeners(GerarNotaFiscalListener.class)
+@EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
 @Entity(name = "pedidos")
 public class Pedido {
 
@@ -61,10 +62,10 @@ public class Pedido {
   @OneToOne(mappedBy = "pedido")
   private NotaFiscal notaFiscal;
 
-  @Column(name = "data_criacao")
+  @Column(name = "data_criacao", updatable = false)
   private LocalDateTime dataCriacao;
 
-  @Column(name = "data_ultima_atualizacao")
+  @Column(name = "data_ultima_atualizacao", insertable = false)
   private LocalDateTime dataUltimaAtualizacao;
 
   @PrePersist
