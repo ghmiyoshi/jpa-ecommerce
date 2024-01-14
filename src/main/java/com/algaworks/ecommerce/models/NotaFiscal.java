@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
@@ -20,11 +21,14 @@ public class NotaFiscal {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "pedido_id")
   private Long id;
+
   private String xml;
   @Column(name = "data_emissao")
   private LocalDateTime dataEmissao;
 
+  @MapsId
   @OneToOne(optional = false)
   @JoinColumn(name = "pedido_id")
   private Pedido pedido;
