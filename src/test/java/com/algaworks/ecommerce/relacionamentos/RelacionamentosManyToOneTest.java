@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.ItemPedido;
-import com.algaworks.ecommerce.models.ItemPedidoId;
 import com.algaworks.ecommerce.models.Pedido;
 import com.algaworks.ecommerce.models.Produto;
 import java.math.BigDecimal;
@@ -55,7 +54,6 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
     final var itemPedido = new ItemPedido();
 //    itemPedido.setPedidoId(pedido.getId()); IdClass
 //    itemPedido.setProdutoId(produto.getId()); IdClass
-    itemPedido.setId(new ItemPedidoId(pedido.getId(), produto.getId()));
     itemPedido.setPrecoProduto(produto.getPreco());
     itemPedido.setQuantidade(1);
     itemPedido.setPedido(pedido);

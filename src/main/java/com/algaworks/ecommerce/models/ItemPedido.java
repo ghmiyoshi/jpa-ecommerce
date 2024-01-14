@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.PrePersist;
 import java.math.BigDecimal;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,4 +35,9 @@ public class ItemPedido {
   private BigDecimal precoProduto;
 
   private int quantidade;
+
+  @PrePersist
+  private void prePersist() {
+    this.setId(new ItemPedidoId());
+  }
 }

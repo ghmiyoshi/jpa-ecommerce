@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -7,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,10 +22,14 @@ public class PagamentoCartao {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "pedido_id")
   private Long id;
+
+  @MapsId
   @OneToOne(optional = false)
   @JoinColumn(name = "pedido_id")
   private Pedido pedido;
+
   @Enumerated(EnumType.STRING)
   private StatusPagamentoEnum status;
   private String numero;
