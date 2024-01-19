@@ -1,7 +1,9 @@
 package com.algaworks.ecommerce.models;
 
 import com.algaworks.ecommerce.listeners.GenericoListener;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -45,4 +47,10 @@ public class Produto {
 
   @Column(name = "data_ultima_atualizacao", insertable = false)
   private LocalDateTime dataUltimaAtualizacao;
+
+  @ElementCollection
+  @CollectionTable(name = "produtos_tags",
+      joinColumns = @JoinColumn(name = "produto_id"))
+  @Column(name = "tag")
+  private List<String> tags;
 }
