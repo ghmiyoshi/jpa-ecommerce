@@ -3,8 +3,9 @@ package com.algaworks.ecommerce.mapeamentoavancado;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.models.Atributo;
 import com.algaworks.ecommerce.models.Produto;
-import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class ElementCollectionTest extends EntityManagerTest {
@@ -13,14 +14,29 @@ class ElementCollectionTest extends EntityManagerTest {
   void aplicarTags() {
     entityManager.getTransaction().begin();
 
-    Produto produto = entityManager.find(Produto.class, 1);
-    produto.setTags(Arrays.asList("ebook", "livro-digital"));
+    final var produto = entityManager.find(Produto.class, 1);
+    produto.setTags(List.of("ebook", "livro-digital"));
 
     entityManager.getTransaction().commit();
-
     entityManager.clear();
 
-    Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+    final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+
     assertFalse(produtoVerificacao.getTags().isEmpty());
+  }
+
+  @Test
+  void aplicarAtributos() {
+    entityManager.getTransaction().begin();
+
+    final var produto = entityManager.find(Produto.class, 1);
+    produto.setAtributos(List.of(new Atributo("tela", "320x600"), new Atributo("cor", "preto")));
+
+    entityManager.getTransaction().commit();
+    entityManager.clear();
+
+    final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+
+    assertFalse(produtoVerificacao.getAtributos().isEmpty());
   }
 }
