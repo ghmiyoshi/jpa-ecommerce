@@ -36,7 +36,6 @@ class RelacionamentosOneToOneTest extends EntityManagerTest {
     final var pedido = entityManager.find(Pedido.class, 1L);
 
     final var notaFiscal = new NotaFiscal();
-    notaFiscal.setXml("TESTE");
     notaFiscal.setDataEmissao(LocalDateTime.now());
     notaFiscal.setPedido(pedido);
 

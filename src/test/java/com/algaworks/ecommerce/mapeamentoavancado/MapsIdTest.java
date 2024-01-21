@@ -21,7 +21,6 @@ class MapsIdTest extends EntityManagerTest {
     final var pedido = entityManager.find(Pedido.class, 1L);
 
     final var notaFiscal = new NotaFiscal();
-    notaFiscal.setXml("<xml/>");
     notaFiscal.setPedido(pedido);
     notaFiscal.setDataEmissao(LocalDateTime.now());
 
