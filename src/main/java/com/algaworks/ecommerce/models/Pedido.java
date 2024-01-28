@@ -49,7 +49,7 @@ public class Pedido extends EntidadeBase {
   private List<ItemPedido> itens;
 
   @OneToOne(mappedBy = "pedido")
-  private PagamentoCartao pagamentoCartao;
+  private Pagamento pagamento;
 
   @OneToOne(mappedBy = "pedido")
   private NotaFiscal notaFiscal;

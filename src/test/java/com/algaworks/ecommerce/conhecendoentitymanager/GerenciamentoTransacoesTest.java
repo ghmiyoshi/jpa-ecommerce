@@ -28,7 +28,7 @@ class GerenciamentoTransacoesTest extends EntityManagerTest {
     final var pedido = entityManager.find(Pedido.class, 1L);
     pedido.setStatus(PAGO);
 
-    if (isNull(pedido.getPagamentoCartao())) {
+    if (isNull(pedido.getPagamento())) {
       throw new RuntimeException("Pedido ainda não foi pago.");
     }
   }

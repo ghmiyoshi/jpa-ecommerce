@@ -24,6 +24,7 @@ class SecondaryTableTest extends EntityManagerTest {
     entityManager.clear();
 
     final var clienteVerificacao = entityManager.find(Cliente.class, cliente.getId());
+
     assertNotNull(clienteVerificacao.getSexo());
   }
 }
