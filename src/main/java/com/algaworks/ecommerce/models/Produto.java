@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import java.math.BigDecimal;
@@ -58,4 +59,8 @@ public class Produto {
   @CollectionTable(name = "produtos_atributos",
       joinColumns = @JoinColumn(name = "produto_id"))
   private List<Atributo> atributos;
+
+  @Lob
+  @Column(length = 1000)
+  private byte[] foto;
 }

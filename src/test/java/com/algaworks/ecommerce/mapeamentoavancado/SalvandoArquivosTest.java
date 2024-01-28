@@ -24,6 +24,7 @@ class SalvandoArquivosTest extends EntityManagerTest {
     entityManager.getTransaction().begin();
     entityManager.persist(notaFiscal);
     entityManager.getTransaction().commit();
+    entityManager.clear();
 
     final var notaFiscalVerificacao = entityManager.find(NotaFiscal.class, notaFiscal.getId());
 
