@@ -8,9 +8,6 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.MapKeyEnumerated;
@@ -22,21 +19,16 @@ import jakarta.persistence.Transient;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
 @SecondaryTable(name = "clientes_detalhes",
     pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
 @Entity(name = "clientes")
-public class Cliente {
+public class Cliente extends EntidadeBase {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
   private String nome;
 
   @Transient

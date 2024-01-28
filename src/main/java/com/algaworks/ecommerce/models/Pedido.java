@@ -11,9 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -23,20 +20,15 @@ import jakarta.persistence.PreUpdate;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(of = "id")
 @EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
 @Entity(name = "pedidos")
-public class Pedido {
+public class Pedido extends EntidadeBase {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
   @Column(name = "data_pedido")
   private LocalDateTime dataPedido;
   @Column(name = "data_conclusao")
@@ -61,12 +53,6 @@ public class Pedido {
 
   @OneToOne(mappedBy = "pedido")
   private NotaFiscal notaFiscal;
-
-  @Column(name = "data_criacao", updatable = false)
-  private LocalDateTime dataCriacao;
-
-  @Column(name = "data_ultima_atualizacao", insertable = false)
-  private LocalDateTime dataUltimaAtualizacao;
 
   @PrePersist
   public void prePersist() {
