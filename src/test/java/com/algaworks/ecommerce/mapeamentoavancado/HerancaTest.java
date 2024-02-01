@@ -2,6 +2,7 @@ package com.algaworks.ecommerce.mapeamentoavancado;
 
 import static com.algaworks.ecommerce.models.SexoEnum.MASCULINO;
 import static com.algaworks.ecommerce.models.StatusPagamentoEnum.PROCESSANDO;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -39,6 +40,7 @@ class HerancaTest extends EntityManagerTest {
         .getResultList();
 
     assertFalse(pagamentos.isEmpty());
+    assertEquals(1, pagamentos.size());
   }
 
   @Test

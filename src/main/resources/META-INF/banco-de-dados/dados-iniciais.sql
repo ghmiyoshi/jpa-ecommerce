@@ -10,7 +10,7 @@ INSERT INTO pedidos (id, cliente_id, data_pedido, total, status) VALUES (2, 1, s
 INSERT INTO item_pedidos (pedido_id, produto_id, preco_produto, quantidade) VALUES (1, 1, 499, 2);
 INSERT INTO item_pedidos (pedido_id, produto_id, preco_produto, quantidade) VALUES (2, 1, 499, 1);
 
-INSERT INTO pagamentos(pedido_id, status, data_pagamento, numero_cartao, titular_cartao) VALUES (1, 'PROCESSANDO', sysdate(), '1234-1234-1234-1234', 'Fernando Medeiros');
+INSERT INTO pagamento_cartoes(pedido_id, status, numero_cartao, titular_cartao) VALUES (2, 'PROCESSANDO', sysdate(), '1234-1234-1234-1234', 'Fernando Medeiros');
 
 INSERT INTO categorias (id, nome) VALUES (1, 'Eletrônicos');
 INSERT INTO categorias (id, nome) VALUES (2, 'Livros');
