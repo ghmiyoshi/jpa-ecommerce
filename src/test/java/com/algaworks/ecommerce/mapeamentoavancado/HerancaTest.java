@@ -35,7 +35,7 @@ class HerancaTest extends EntityManagerTest {
   @Test
   void buscarPagamentos() {
     final var pagamentos = entityManager
-        .createQuery("select p from Pagamento p")
+        .createQuery("SELECT p FROM Pagamento p")
         .getResultList();
 
     assertFalse(pagamentos.isEmpty());
