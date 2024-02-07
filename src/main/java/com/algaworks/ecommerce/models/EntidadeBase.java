@@ -29,5 +29,4 @@ public class EntidadeBase {
   @UpdateTimestamp
   @Column(name = "data_ultima_atualizacao", insertable = false)
   private LocalDateTime dataUltimaAtualizacao;
-
 }
