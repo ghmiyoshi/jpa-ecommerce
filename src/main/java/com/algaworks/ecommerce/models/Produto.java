@@ -6,11 +6,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import java.math.BigDecimal;
 import java.util.List;
 import lombok.Getter;
@@ -19,7 +22,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EntityListeners(GenericoListener.class)
-@Entity(name = "produtos")
+@Entity
+@Table(name = "produtos", uniqueConstraints =
+@UniqueConstraint(name = "unq_nome", columnNames = "nome"),
+    indexes = @Index(name = "idx_nome", columnList = "nome"))
 public class Produto extends EntidadeBase {
 
   private String nome;

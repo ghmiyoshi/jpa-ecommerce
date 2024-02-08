@@ -8,6 +8,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.MapKeyEnumerated;
@@ -15,7 +16,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.SecondaryTable;
+import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
+import jakarta.persistence.UniqueConstraint;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +29,15 @@ import lombok.Setter;
 @Setter
 @SecondaryTable(name = "clientes_detalhes",
     pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
-@Entity(name = "clientes")
+@Entity
+@Table(name = "clientes", uniqueConstraints =
+@UniqueConstraint(name = "unq_cpf", columnNames = "cpf"),
+    indexes = @Index(name = "idx_nome", columnList = "nome"))
 public class Cliente extends EntidadeBase {
 
   private String nome;
+
+  private String cpf;
 
   @Transient
   private String primeiroNome;
