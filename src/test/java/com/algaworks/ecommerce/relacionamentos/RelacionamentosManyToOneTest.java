@@ -17,7 +17,10 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
 
   @Test
   void verificarRelacionamento() {
-    final var cliente = entityManager.find(Cliente.class, 1);
+    Cliente cliente = new Cliente();
+    cliente.setNome("José Mineiro");
+    cliente.setCpf("12345678901");
+
     final var pedido = new Pedido();
     pedido.setDataPedido(LocalDateTime.now());
     pedido.setCliente(cliente);
@@ -25,6 +28,7 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
     pedido.setTotal(BigDecimal.TEN);
 
     entityManager.getTransaction().begin();
+    entityManager.persist(cliente);
     entityManager.persist(pedido);
     entityManager.getTransaction().commit();
     entityManager.clear();
@@ -40,7 +44,7 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
   void verificarRelacionamentoItemPedido() {
     entityManager.getTransaction().begin();
 
-    final var cliente = entityManager.find(Cliente.class, 1);
+    final var cliente = entityManager.find(Cliente.class, 2);
     final var produto = entityManager.find(Produto.class, 1);
 
     final var pedido = new Pedido();

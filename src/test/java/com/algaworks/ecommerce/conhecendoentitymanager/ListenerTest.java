@@ -21,7 +21,7 @@ class ListenerTest extends EntityManagerTest {
 
   @Test
   void acionarListener() {
-    final var cliente = entityManager.find(Cliente.class, 1);
+    final var cliente = entityManager.find(Cliente.class, 2);
 
     final var pedido = new Pedido();
 

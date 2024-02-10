@@ -2,6 +2,7 @@ package com.algaworks.ecommerce.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -19,7 +20,8 @@ public class Categoria extends EntidadeBase {
   private String nome;
 
   @ManyToOne
-  @JoinColumn(name = "categoria_pai_id")
+  @JoinColumn(name = "categoria_pai_id",
+      foreignKey = @ForeignKey(name = "fk_categorias_categoria_pai"))
   private Categoria categoriaPai;
 
   @ManyToMany(mappedBy = "categorias")

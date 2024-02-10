@@ -11,12 +11,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,7 +29,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
-@Entity(name = "pedidos")
+@Table(name = "pedidos", uniqueConstraints =
+@UniqueConstraint(name = "unq_cliente_id", columnNames = "cliente_id"))
+@Entity
 public class Pedido extends EntidadeBase {
 
   @Column(name = "data_pedido")
@@ -50,7 +55,8 @@ public class Pedido extends EntidadeBase {
 
   /* Adicionando optional forca a execucao de um inner join que é um pouco mais performático */
   @ManyToOne(optional = false)
-  @JoinColumn(name = "cliente_id")
+  @JoinColumn(name = "cliente_id", nullable = false,
+      foreignKey = @ForeignKey(name = "fk_pedidos_clientes"))
   private Cliente cliente;
 
   @OneToMany(mappedBy = "pedido")

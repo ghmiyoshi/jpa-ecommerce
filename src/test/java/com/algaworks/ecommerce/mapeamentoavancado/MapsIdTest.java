@@ -40,7 +40,7 @@ class MapsIdTest extends EntityManagerTest {
 
   @Test
   void inserirItemPedido() {
-    final var cliente = entityManager.find(Cliente.class, 1);
+    final var cliente = entityManager.find(Cliente.class, 2);
     final var produto = entityManager.find(Produto.class, 1);
 
     final var pedido = new Pedido();

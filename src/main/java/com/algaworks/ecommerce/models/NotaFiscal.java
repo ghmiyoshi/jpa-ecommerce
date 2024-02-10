@@ -2,6 +2,7 @@ package com.algaworks.ecommerce.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.MapsId;
@@ -28,6 +29,7 @@ public class NotaFiscal extends EntidadeBase {
 
   @MapsId
   @OneToOne(optional = false)
-  @JoinColumn(name = "pedido_id", nullable = false)
+  @JoinColumn(name = "pedido_id", nullable = false,
+      foreignKey = @ForeignKey(name = "fk_nota_fiscal_pedido"))
   private Pedido pedido;
 }
