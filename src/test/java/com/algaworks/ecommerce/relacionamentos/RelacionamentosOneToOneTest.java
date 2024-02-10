@@ -20,6 +20,7 @@ class RelacionamentosOneToOneTest extends EntityManagerTest {
     pagamentoCartao.setNumeroCartao("1234");
     pagamentoCartao.setStatus(PROCESSANDO);
     pagamentoCartao.setPedido(pedido);
+    pagamentoCartao.setNomeTitular("Fulano da Silva");
 
     entityManager.getTransaction().begin();
     entityManager.persist(pagamentoCartao);
@@ -36,6 +37,7 @@ class RelacionamentosOneToOneTest extends EntityManagerTest {
     final var pedido = entityManager.find(Pedido.class, 1L);
 
     final var notaFiscal = new NotaFiscal();
+    notaFiscal.setXml("<xml/>".getBytes());
     notaFiscal.setDataEmissao(LocalDateTime.now());
     notaFiscal.setPedido(pedido);
 

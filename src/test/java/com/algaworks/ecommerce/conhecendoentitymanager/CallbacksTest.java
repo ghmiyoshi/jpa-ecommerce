@@ -2,6 +2,7 @@ package com.algaworks.ecommerce.conhecendoentitymanager;
 
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.AGUARDANDO;
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.PAGO;
+import static java.math.BigDecimal.TEN;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
@@ -19,6 +20,7 @@ class CallbacksTest extends EntityManagerTest {
 
     pedido.setCliente(cliente);
     pedido.setStatus(AGUARDANDO);
+    pedido.setTotal(TEN);
 
     entityManager.getTransaction().begin();
 

@@ -12,9 +12,9 @@ import lombok.Setter;
 @Entity
 public class PagamentoCartao extends Pagamento {
 
-  @Column(name = "nome_titular")
+  @Column(name = "nome_titular", nullable = false)
   private String nomeTitular;
 
-  @Column(name = "numero_cartao")
+  @Column(name = "numero_cartao", length = 50)
   private String numeroCartao;
 }

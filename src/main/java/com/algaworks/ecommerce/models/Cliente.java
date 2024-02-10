@@ -35,8 +35,10 @@ import lombok.Setter;
     indexes = @Index(name = "idx_nome", columnList = "nome"))
 public class Cliente extends EntidadeBase {
 
+  @Column(nullable = false)
   private String nome;
 
+  @Column(nullable = false, length = 14)
   private String cpf;
 
   @Transient
@@ -48,6 +50,7 @@ public class Cliente extends EntidadeBase {
 
   @Column(name = "data_nascimento", table = "clientes_detalhes")
   private LocalDate dataNascimento;
+  
   @OneToMany(mappedBy = "cliente")
   private List<Pedido> pedidos;
 

@@ -9,6 +9,7 @@ class EstadosECicloDeVidaTest extends EntityManagerTest {
   @Test
   void analisarEstados() {
     final var categoriaNovo = new Categoria();
+    categoriaNovo.setNome("Eletrônicos");
 
     final var categoriaGerenciadaMerge = entityManager.merge(categoriaNovo);
 

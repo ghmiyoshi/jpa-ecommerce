@@ -11,6 +11,7 @@ import com.algaworks.ecommerce.models.ItemPedidoId;
 import com.algaworks.ecommerce.models.NotaFiscal;
 import com.algaworks.ecommerce.models.Pedido;
 import com.algaworks.ecommerce.models.Produto;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,7 @@ class MapsIdTest extends EntityManagerTest {
     final var pedido = entityManager.find(Pedido.class, 1L);
 
     final var notaFiscal = new NotaFiscal();
+    notaFiscal.setXml("<xml/>".getBytes(StandardCharsets.UTF_8));
     notaFiscal.setPedido(pedido);
     notaFiscal.setDataEmissao(LocalDateTime.now());
 

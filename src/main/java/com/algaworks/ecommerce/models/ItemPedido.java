@@ -23,17 +23,18 @@ public class ItemPedido {
 
   @MapsId("pedidoId")
   @ManyToOne(optional = false)
-  @JoinColumn(name = "pedido_id")
+  @JoinColumn(name = "pedido_id", nullable = false)
   private Pedido pedido;
 
   @MapsId("produtoId")
   @ManyToOne(optional = false)
-  @JoinColumn(name = "produto_id")
+  @JoinColumn(name = "produto_id", nullable = false)
   private Produto produto;
 
-  @Column(name = "preco_produto")
+  @Column(name = "preco_produto", nullable = false)
   private BigDecimal precoProduto;
 
+  @Column(nullable = false)
   private int quantidade;
 
   @PrePersist

@@ -14,6 +14,7 @@ class CrudClientTest extends EntityManagerTest {
   void inserirPrimeiroCliente() {
     final var cliente = new Cliente();
     cliente.setNome("Gabriel");
+    cliente.setCpf("12345678910");
 
     entityManager.getTransaction().begin();
     entityManager.persist(cliente);

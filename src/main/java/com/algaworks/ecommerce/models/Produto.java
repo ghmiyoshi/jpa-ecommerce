@@ -28,8 +28,12 @@ import lombok.Setter;
     indexes = @Index(name = "idx_nome", columnList = "nome"))
 public class Produto extends EntidadeBase {
 
+  @Column(length = 100, nullable = false, unique = true)
   private String nome;
+
+  @Column(columnDefinition = "varchar(275) not null default 'descricao'")
   private String descricao;
+
   private BigDecimal preco;
 
   @ManyToMany
@@ -43,7 +47,7 @@ public class Produto extends EntidadeBase {
   @ElementCollection
   @CollectionTable(name = "produtos_tags",
       joinColumns = @JoinColumn(name = "produto_id"))
-  @Column(name = "tag")
+  @Column(name = "tag", length = 50, nullable = false)
   private List<String> tags;
 
   @ElementCollection

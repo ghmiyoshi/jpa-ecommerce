@@ -31,6 +31,7 @@ class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
 
     final var cliente = new Cliente();
     cliente.setNome("Fernando Medeiros");
+    cliente.setCpf("12345678901");
 
     pedido.setCliente(cliente);
     entityManager.getTransaction().begin();

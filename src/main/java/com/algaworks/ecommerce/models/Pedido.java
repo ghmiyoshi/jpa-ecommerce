@@ -31,13 +31,20 @@ public class Pedido extends EntidadeBase {
 
   @Column(name = "data_pedido")
   private LocalDateTime dataPedido;
+
   @Column(name = "data_conclusao")
   private LocalDateTime dataConclusao;
+
   @Column(name = "nota_fiscal_id")
   private Long notaFiscalId;
+
+  @Column(precision = 19, scale = 2, nullable = false)
   private BigDecimal total;
+
+  @Column(length = 30, nullable = false)
   @Enumerated(EnumType.STRING)
   private StatusPedidoEnum status;
+
   @Embedded
   private Endereco enderecoEntrega;
 
@@ -45,6 +52,7 @@ public class Pedido extends EntidadeBase {
   @ManyToOne(optional = false)
   @JoinColumn(name = "cliente_id")
   private Cliente cliente;
+
   @OneToMany(mappedBy = "pedido")
   private List<ItemPedido> itens;
 

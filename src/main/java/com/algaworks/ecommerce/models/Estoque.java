@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Estoque extends EntidadeBase {
 
   @OneToOne(optional = false)
-  @JoinColumn(name = "produto_id")
+  @JoinColumn(name = "produto_id", nullable = false)
   private Produto produto;
   private int quantidade;
 }

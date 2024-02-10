@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
@@ -14,6 +15,7 @@ import lombok.Setter;
 @Entity(name = "categorias")
 public class Categoria extends EntidadeBase {
 
+  @Column(length = 100, nullable = false)
   private String nome;
 
   @ManyToOne
