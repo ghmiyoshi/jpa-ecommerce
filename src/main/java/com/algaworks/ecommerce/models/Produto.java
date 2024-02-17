@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -37,8 +38,11 @@ public class Produto extends EntidadeBase {
   private BigDecimal preco;
 
   @ManyToMany
-  @JoinTable(name = "produtos_categorias", joinColumns = @JoinColumn(name = "produto_id"),
-      inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+  @JoinTable(name = "produtos_categorias",
+      joinColumns = @JoinColumn(name = "produto_id", nullable = false,
+          foreignKey = @ForeignKey(name = "fk_produtos_categorias_produto")),
+      inverseJoinColumns = @JoinColumn(name = "categoria_id", nullable = false,
+          foreignKey = @ForeignKey(name = "fk_produtos_categorias_categoria")))
   private List<Categoria> categorias;
 
   @OneToOne(mappedBy = "produto")
