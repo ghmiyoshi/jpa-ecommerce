@@ -31,7 +31,7 @@
 
       <!-- Gera o schema do banco com script de criacao e remocao ao subir aplicacao. -->
       <property name="jakarta.persistence.schema-generation.scripts.action"
-        value="drop-and-create"/>
+        value="none"/>
       <property name="jakarta.persistence.schema-generation.scripts.create-target"
         value="src/main/resources/META-INF/banco-de-dados/script-criacao-exportado.sql"/>
       <property name="jakarta.persistence.schema-generation.scripts.drop-target"
