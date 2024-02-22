@@ -55,7 +55,7 @@ public class Pedido extends EntidadeBase {
   private Endereco enderecoEntrega;
 
   /* Adicionando optional forca a execucao de um inner join que é um pouco mais performático */
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
   @JoinColumn(name = "cliente_id", nullable = false,
       foreignKey = @ForeignKey(name = "fk_pedidos_clientes"))
   private Cliente cliente;
