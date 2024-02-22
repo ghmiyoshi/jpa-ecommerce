@@ -13,6 +13,20 @@
 
       <property name="jakarta.persistence.schema-generation.database.action"
         value="drop-and-create"/>
+
+      <!-- Gera o schema do banco com metadados e scripts -->
+      <property name="jakarta.persistence.schema-generation.create-source"
+        value="metadata-then-script"/>
+      <property name="jakarta.persistence.schema-generation.drop-source"
+        value="metadata-then-script"/>
+
+      <!-- Gera o schema do banco com script de criacao e remocao ao subir aplicacao.
+      (depende do schema-generation drop ou create)-->
+      <property name="jakarta.persistence.schema-generation.create-script-source"
+        value="META-INF/banco-de-dados/script-criacao.sql"/>
+      <property name="jakarta.persistence.schema-generation.drop-script-source"
+        value="META-INF/banco-de-dados/script-remocao.sql"/>
+
       <property name="jakarta.persistence.sql-load-script-source"
         value="META-INF/banco-de-dados/dados-iniciais.sql"/>
 

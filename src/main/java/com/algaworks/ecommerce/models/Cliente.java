@@ -8,6 +8,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyColumn;
@@ -28,7 +29,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @SecondaryTable(name = "clientes_detalhes",
-    pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
+    pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"),
+    foreignKey = @ForeignKey(name = "fk_clientes_detalhes_clientes"))
 @Entity
 @Table(name = "clientes", uniqueConstraints =
 @UniqueConstraint(name = "unq_cpf", columnNames = "cpf"),
@@ -50,7 +52,7 @@ public class Cliente extends EntidadeBase {
 
   @Column(name = "data_nascimento", table = "clientes_detalhes")
   private LocalDate dataNascimento;
-  
+
   @OneToMany(mappedBy = "cliente")
   private List<Pedido> pedidos;
 
