@@ -5,6 +5,7 @@ import static java.util.Objects.nonNull;
 
 import com.algaworks.ecommerce.listeners.GenericoListener;
 import com.algaworks.ecommerce.listeners.GerarNotaFiscalListener;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -59,7 +60,7 @@ public class Pedido extends EntidadeBase {
       foreignKey = @ForeignKey(name = "fk_pedidos_clientes"))
   private Cliente cliente;
 
-  @OneToMany(mappedBy = "pedido")
+  @OneToMany(mappedBy = "pedido", cascade = CascadeType.PERSIST)
   private List<ItemPedido> itens;
 
   @OneToOne(mappedBy = "pedido")
