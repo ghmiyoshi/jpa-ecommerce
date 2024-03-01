@@ -60,7 +60,7 @@ public class Pedido extends EntidadeBase {
       foreignKey = @ForeignKey(name = "fk_pedidos_clientes"))
   private Cliente cliente;
 
-  @OneToMany(mappedBy = "pedido", cascade = CascadeType.PERSIST)
+  @OneToMany(mappedBy = "pedido")
   private List<ItemPedido> itens;
 
   @OneToOne(mappedBy = "pedido")

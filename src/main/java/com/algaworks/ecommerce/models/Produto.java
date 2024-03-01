@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.models;
 
 import com.algaworks.ecommerce.listeners.GenericoListener;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -37,7 +38,7 @@ public class Produto extends EntidadeBase {
 
   private BigDecimal preco;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.PERSIST)
   @JoinTable(name = "produtos_categorias",
       joinColumns = @JoinColumn(name = "produto_id", nullable = false,
           foreignKey = @ForeignKey(name = "fk_produtos_categorias_produto")),
