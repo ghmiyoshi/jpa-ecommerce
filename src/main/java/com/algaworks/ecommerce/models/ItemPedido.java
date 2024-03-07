@@ -1,5 +1,6 @@
 package com.algaworks.ecommerce.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -23,7 +24,7 @@ public class ItemPedido {
   private ItemPedidoId id;
 
   @MapsId("pedidoId")
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, cascade = CascadeType.MERGE)
   @JoinColumn(name = "pedido_id", nullable = false,
       foreignKey = @ForeignKey(name = "fk_item_pedido_pedido"))
   private Pedido pedido;

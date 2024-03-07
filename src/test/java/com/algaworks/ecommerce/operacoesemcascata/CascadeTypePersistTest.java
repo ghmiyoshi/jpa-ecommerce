@@ -2,8 +2,8 @@ package com.algaworks.ecommerce.operacoesemcascata;
 
 import static com.algaworks.ecommerce.models.SexoEnum.MASCULINO;
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.AGUARDANDO;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.Categoria;
@@ -54,12 +54,12 @@ class CascadeTypePersistTest extends EntityManagerTest {
 
     final var pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
     assertNotNull(pedidoVerificacao);
-    assertTrue(pedidoVerificacao.getItens().isEmpty());
+    assertFalse(pedidoVerificacao.getItens().isEmpty());
   }
 
   @Test
   void persistirItemPedidoComPedido() {
-    final var cliente = entityManager.find(Cliente.class, 1);
+    final var cliente = entityManager.find(Cliente.class, 2);
     final var produto = entityManager.find(Produto.class, 1);
 
     final var pedido = new Pedido();
@@ -91,7 +91,7 @@ class CascadeTypePersistTest extends EntityManagerTest {
     cliente.setDataNascimento(LocalDate.of(1980, 1, 1));
     cliente.setSexo(MASCULINO);
     cliente.setNome("José Carlos");
-    cliente.setCpf("01234567890");
+    cliente.setCpf("01234567892");
 
     final var pedido = new Pedido();
     pedido.setDataCriacao(LocalDateTime.now());

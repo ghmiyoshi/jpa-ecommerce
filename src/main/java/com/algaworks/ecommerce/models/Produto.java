@@ -38,7 +38,7 @@ public class Produto extends EntidadeBase {
 
   private BigDecimal preco;
 
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "produtos_categorias",
       joinColumns = @JoinColumn(name = "produto_id", nullable = false,
           foreignKey = @ForeignKey(name = "fk_produtos_categorias_produto")),

@@ -1,7 +1,6 @@
 package com.algaworks.ecommerce.models;
 
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.PAGO;
-import static java.util.Objects.nonNull;
 
 import com.algaworks.ecommerce.listeners.GenericoListener;
 import com.algaworks.ecommerce.listeners.GerarNotaFiscalListener;
@@ -22,8 +21,10 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,7 +61,7 @@ public class Pedido extends EntidadeBase {
       foreignKey = @ForeignKey(name = "fk_pedidos_clientes"))
   private Cliente cliente;
 
-  @OneToMany(mappedBy = "pedido")
+  @OneToMany(mappedBy = "pedido", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   private List<ItemPedido> itens;
 
   @OneToOne(mappedBy = "pedido")
@@ -71,7 +72,7 @@ public class Pedido extends EntidadeBase {
 
   @PrePersist
   public void prePersist() {
-    this.setDataCriacao(LocalDateTime.now());
+    this.setDataUltimaAtualizacao(LocalDateTime.now());
     this.calcularTotal();
   }
 
@@ -82,10 +83,13 @@ public class Pedido extends EntidadeBase {
   }
 
   private void calcularTotal() {
-    if (nonNull(itens)) {
-      total = itens.stream().map(ItemPedido::getPrecoProduto)
-          .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
+    total = Optional.ofNullable(itens)
+        .map(items -> items.stream()
+            .map(itemPedido -> itemPedido.getPrecoProduto()
+                .multiply(BigDecimal.valueOf(itemPedido.getQuantidade())
+                    .setScale(2, RoundingMode.HALF_UP)))
+            .reduce(BigDecimal.ZERO, BigDecimal::add))
+        .orElse(BigDecimal.ZERO);
   }
 
   public boolean isPago() {
