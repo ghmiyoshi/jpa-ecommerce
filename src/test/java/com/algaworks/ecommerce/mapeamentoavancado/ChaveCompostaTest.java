@@ -55,7 +55,7 @@ class ChaveCompostaTest extends EntityManagerTest {
   @Test
   void bucarItem() {
     final var itemPedido = entityManager.find(
-        ItemPedido.class, new ItemPedidoId(1L, 1L));
+        ItemPedido.class, new ItemPedidoId(2L, 1L));
 
     assertNotNull(itemPedido);
   }

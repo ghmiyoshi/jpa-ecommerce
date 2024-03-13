@@ -14,7 +14,7 @@ class RelacionamentosOneToOneTest extends EntityManagerTest {
 
   @Test
   void verificarRelacionamento() {
-    final var pedido = entityManager.find(Pedido.class, 1L);
+    final var pedido = entityManager.find(Pedido.class, 2L);
 
     final var pagamentoCartao = new PagamentoCartao();
     pagamentoCartao.setNumeroCartao("1234");
@@ -34,7 +34,7 @@ class RelacionamentosOneToOneTest extends EntityManagerTest {
 
   @Test
   void verificarRelacionamentoPedidoNotaFiscal() {
-    final var pedido = entityManager.find(Pedido.class, 1L);
+    final var pedido = entityManager.find(Pedido.class, 2L);
 
     final var notaFiscal = new NotaFiscal();
     notaFiscal.setXml("<xml/>".getBytes());

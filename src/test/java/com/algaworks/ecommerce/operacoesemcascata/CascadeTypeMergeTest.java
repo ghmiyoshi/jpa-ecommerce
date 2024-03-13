@@ -50,7 +50,7 @@ class CascadeTypeMergeTest extends EntityManagerTest {
     final var produto = entityManager.find(Produto.class, 1);
 
     final var pedido = new Pedido();
-    pedido.setId(1L);
+    pedido.setId(2L);
     pedido.setCliente(cliente);
     pedido.setStatus(AGUARDANDO);
 

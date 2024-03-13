@@ -14,7 +14,7 @@ class SalvandoArquivosTest extends EntityManagerTest {
 
   @Test
   void salvarXmlNota() {
-    final var pedido = entityManager.find(Pedido.class, 1);
+    final var pedido = entityManager.find(Pedido.class, 2L);
 
     final var notaFiscal = new NotaFiscal();
     notaFiscal.setPedido(pedido);

@@ -19,7 +19,7 @@ class MapsIdTest extends EntityManagerTest {
 
   @Test
   void inserirNotaFiscal() {
-    final var pedido = entityManager.find(Pedido.class, 1L);
+    final var pedido = entityManager.find(Pedido.class, 2L);
 
     final var notaFiscal = new NotaFiscal();
     notaFiscal.setXml("<xml/>".getBytes(StandardCharsets.UTF_8));

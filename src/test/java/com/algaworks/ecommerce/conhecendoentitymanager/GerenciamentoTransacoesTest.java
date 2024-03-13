@@ -25,7 +25,7 @@ class GerenciamentoTransacoesTest extends EntityManagerTest {
   }
 
   private static void metodoDeNegocio() {
-    final var pedido = entityManager.find(Pedido.class, 1L);
+    final var pedido = entityManager.find(Pedido.class, 2L);
     pedido.setStatus(PAGO);
 
     if (isNull(pedido.getPagamento())) {

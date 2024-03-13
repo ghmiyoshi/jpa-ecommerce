@@ -13,6 +13,22 @@ import org.junit.jupiter.api.Test;
 
 class CascadeTypeRemoveTest extends EntityManagerTest {
 
+  // @Test
+  void removerItensOrfaos() {
+    final var pedido = entityManager.find(Pedido.class, 1);
+
+    assertFalse(pedido.getItens().isEmpty());
+
+    entityManager.getTransaction().begin();
+    pedido.getItens().clear();
+    entityManager.getTransaction().commit();
+
+    entityManager.clear();
+
+    final var pedidoVerificacao = entityManager.find(Pedido.class, pedido.getId());
+    assertTrue(pedidoVerificacao.getItens().isEmpty());
+  }
+
   @Test
   void removerRelacaoProdutoCategoria() {
     final var produto = entityManager.find(Produto.class, 1);

@@ -46,7 +46,7 @@ class HerancaTest extends EntityManagerTest {
 
   @Test
   void incluirPagamentoPedido() {
-    final var pedido = entityManager.find(Pedido.class, 1);
+    final var pedido = entityManager.find(Pedido.class, 2);
 
     final var pagamentoCartao = new PagamentoCartao();
     pagamentoCartao.setPedido(pedido);

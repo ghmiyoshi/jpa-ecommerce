@@ -11,7 +11,7 @@ class RemovendoEntidadesReferenciadasTest extends EntityManagerTest {
 
   @Test
   void removerEntidadeRelacionada() {
-    final var pedido = entityManager.find(Pedido.class, 1);
+    final var pedido = entityManager.find(Pedido.class, 2L);
     assertFalse(pedido.getItens().isEmpty());
 
     entityManager.getTransaction().begin();

@@ -19,7 +19,6 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
@@ -31,8 +30,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
-@Table(name = "pedidos", uniqueConstraints =
-@UniqueConstraint(name = "unq_cliente_id", columnNames = "cliente_id"))
+@Table(name = "pedidos")
 @Entity
 public class Pedido extends EntidadeBase {
 
@@ -61,7 +59,8 @@ public class Pedido extends EntidadeBase {
       foreignKey = @ForeignKey(name = "fk_pedidos_clientes"))
   private Cliente cliente;
 
-  @OneToMany(mappedBy = "pedido", cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+  @OneToMany(mappedBy = "pedido", cascade = {CascadeType.PERSIST,
+      CascadeType.MERGE}, orphanRemoval = true)
   private List<ItemPedido> itens;
 
   @OneToOne(mappedBy = "pedido")

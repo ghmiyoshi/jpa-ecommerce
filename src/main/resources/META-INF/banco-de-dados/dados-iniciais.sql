@@ -14,4 +14,5 @@ INSERT INTO categorias (id, nome) VALUES (1, 'Eletrônicos');
 INSERT INTO categorias (id, nome) VALUES (2, 'Livros');
 INSERT INTO categorias (id, nome) VALUES (3, 'Informática');
 
-INSERT INTO produto_categoria (produto_id, categoria_id) values (1, 2);
+INSERT INTO produtos_categorias (produto_id, categoria_id) values (1, 2);
+INSERT INTO pagamentos (data_criacao, pedido_id, tipo_pagamento, numero_cartao, codigo_barras, nome_titular, status) VALUES (sysdate(), 1, 'cartao', '123-456', null, 'Gabriel', 'PROCESSANDO');
