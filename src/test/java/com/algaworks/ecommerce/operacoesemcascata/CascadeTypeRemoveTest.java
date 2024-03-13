@@ -1,16 +1,36 @@
 package com.algaworks.ecommerce.operacoesemcascata;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.ItemPedido;
 import com.algaworks.ecommerce.models.ItemPedidoId;
 import com.algaworks.ecommerce.models.Pedido;
+import com.algaworks.ecommerce.models.Produto;
+import org.junit.jupiter.api.Test;
 
-public class CascadeTypeRemoveTest extends EntityManagerTest {
+class CascadeTypeRemoveTest extends EntityManagerTest {
+
+  @Test
+  void removerRelacaoProdutoCategoria() {
+    final var produto = entityManager.find(Produto.class, 1);
+
+    assertFalse(produto.getCategorias().isEmpty());
+
+    entityManager.getTransaction().begin();
+    produto.getCategorias().clear();
+    entityManager.getTransaction().commit();
+
+    entityManager.clear();
+
+    final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+    assertTrue(produtoVerificacao.getCategorias().isEmpty());
+  }
 
   // @Test
-  public void removerPedidoEItens() {
+  void removerPedidoEItens() {
     final var pedido = entityManager.find(Pedido.class, 1);
 
     entityManager.getTransaction().begin();
@@ -24,7 +44,7 @@ public class CascadeTypeRemoveTest extends EntityManagerTest {
   }
 
   // @Test
-  public void removerItemPedidoEPedido() {
+  void removerItemPedidoEPedido() {
     final var itemPedido = entityManager.find(
         ItemPedido.class, new ItemPedidoId(1L, 1L));
 

@@ -13,3 +13,5 @@ INSERT INTO item_pedidos (pedido_id, produto_id, preco_produto, quantidade) VALU
 INSERT INTO categorias (id, nome) VALUES (1, 'Eletrônicos');
 INSERT INTO categorias (id, nome) VALUES (2, 'Livros');
 INSERT INTO categorias (id, nome) VALUES (3, 'Informática');
+
+INSERT INTO produto_categoria (produto_id, categoria_id) values (1, 2);
