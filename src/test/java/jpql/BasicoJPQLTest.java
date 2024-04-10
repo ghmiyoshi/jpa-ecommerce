@@ -12,47 +12,60 @@ import org.junit.jupiter.api.Test;
 
 class BasicoJPQLTest extends EntityManagerTest {
 
-  @Test
-  void buscarPorIdentificador() {
-    // entityManager.find(Pedido.class, 1)
+    @Test
+    void buscarPorIdentificador() {
+        // entityManager.find(Pedido.class, 1)
 
-    TypedQuery<Pedido> typedQuery = entityManager.createQuery(
-        "select p from Pedido p where p.id = 2", Pedido.class);
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(
+                "select p from Pedido p where p.id = 2", Pedido.class);
 
-    final var pedido = typedQuery.getSingleResult();
-    assertNotNull(pedido);
+        final var pedido = typedQuery.getSingleResult();
+        assertNotNull(pedido);
 
-    // List<Pedido> lista = typedQuery.getResultList();
-    // assertFalse(lista.isEmpty());
-  }
+        // List<Pedido> lista = typedQuery.getResultList();
+        // assertFalse(lista.isEmpty());
+    }
 
-  @Test
-  void mostrarDiferencaQueries() {
-    String jpql = "select p from Pedido p where p.id = 2";
+    @Test
+    void mostrarDiferencaQueries() {
+        String jpql = "select p from Pedido p where p.id = 2";
 
-    TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
-    final var pedido1 = typedQuery.getSingleResult();
-    assertNotNull(pedido1);
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
+        final var pedido1 = typedQuery.getSingleResult();
+        assertNotNull(pedido1);
 
-    Query query = entityManager.createQuery(jpql);
-    Pedido pedido2 = (Pedido) query.getSingleResult();
-    assertNotNull(pedido2);
+        Query query = entityManager.createQuery(jpql);
+        Pedido pedido2 = (Pedido) query.getSingleResult();
+        assertNotNull(pedido2);
 
-    // List<Pedido> lista = query.getResultList();
-    // assertFalse(lista.isEmpty());
-  }
+        // List<Pedido> lista = query.getResultList();
+        // assertFalse(lista.isEmpty());
+    }
 
-  @Test
-  void selecionarUmAtributoParaRetorno() {
-    final var jpql = "select p.nome from Produto p";
+    @Test
+    void selecionarUmAtributoParaRetorno() {
+        final var jpql = "select p.nome from Produto p";
 
-    TypedQuery<String> typedQuery = entityManager.createQuery(jpql, String.class);
-    final var lista = typedQuery.getResultList();
-    assertEquals(String.class, lista.get(0).getClass());
+        TypedQuery<String> typedQuery = entityManager.createQuery(jpql, String.class);
+        final var lista = typedQuery.getResultList();
+        assertEquals(String.class, lista.get(0).getClass());
 
-    final var jpqlCliente = "select p.cliente from Pedido p";
-    TypedQuery<Cliente> typedQueryCliente = entityManager.createQuery(jpqlCliente, Cliente.class);
-    final var listaClientes = typedQueryCliente.getResultList();
-    assertEquals(Cliente.class, listaClientes.get(0).getClass());
-  }
+        final var jpqlCliente = "select p.cliente from Pedido p";
+        TypedQuery<Cliente> typedQueryCliente = entityManager.createQuery(jpqlCliente,
+                Cliente.class);
+        final var listaClientes = typedQueryCliente.getResultList();
+        assertEquals(Cliente.class, listaClientes.get(0).getClass());
+    }
+
+    @Test
+    void projetarResultado() {
+        final var jpql = "select id, nome from Produto";
+
+        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        final var lista = typedQuery.getResultList();
+
+        assertEquals(2, lista.get(0).length);
+
+        lista.forEach(element -> System.out.println(element[0] + " - " + element[1]));
+    }
 }
