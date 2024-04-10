@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.dto.ProdutoDTO;
 import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.Pedido;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BasicoJPQLTest extends EntityManagerTest {
@@ -16,8 +18,8 @@ class BasicoJPQLTest extends EntityManagerTest {
     void buscarPorIdentificador() {
         // entityManager.find(Pedido.class, 1)
 
-        TypedQuery<Pedido> typedQuery = entityManager.createQuery(
-                "select p from Pedido p where p.id = 2", Pedido.class);
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery("select p from Pedido p where p" +
+                ".id = 2", Pedido.class);
 
         final var pedido = typedQuery.getSingleResult();
         assertNotNull(pedido);
@@ -62,10 +64,22 @@ class BasicoJPQLTest extends EntityManagerTest {
         final var jpql = "select id, nome from Produto";
 
         TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
-        final var lista = typedQuery.getResultList();
+        final var result = typedQuery.getResultList();
 
-        assertEquals(2, lista.get(0).length);
+        assertEquals(2, result.get(0).length);
 
-        lista.forEach(element -> System.out.println(element[0] + " - " + element[1]));
+        result.forEach(element -> System.out.println(element[0] + " - " + element[1]));
+    }
+
+    @Test
+    void projetarNoDTO() {
+        final var jpql = "select new com.algaworks.ecommerce.dto.ProdutoDTO(id, nome) from Produto";
+        TypedQuery<ProdutoDTO> query = entityManager.createQuery(jpql, ProdutoDTO.class);
+
+        List<ProdutoDTO> products = query.getResultList();
+
+        assertNotNull(products);
+
+        products.forEach(produto -> System.out.println(produto.getId() + " - " + produto.getNome()));
     }
 }
