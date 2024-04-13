@@ -19,7 +19,7 @@ class FlushTest extends EntityManagerTest {
     try {
       entityManager.getTransaction().begin();
 
-      final var pedido = entityManager.find(Pedido.class, 1);
+      final var pedido = entityManager.find(Pedido.class, 3);
       pedido.setStatus(PAGO);
 
       entityManager.flush();

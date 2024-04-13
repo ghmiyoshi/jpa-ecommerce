@@ -11,8 +11,12 @@ import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.PagamentoCartao;
 import com.algaworks.ecommerce.models.Pedido;
 import java.time.LocalDate;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
+@TestMethodOrder(OrderAnnotation.class)
 class HerancaTest extends EntityManagerTest {
 
   @Test
@@ -34,6 +38,7 @@ class HerancaTest extends EntityManagerTest {
     assertNotNull(clienteVerificacao.getId());
   }
 
+  @Order(1)
   @Test
   void buscarPagamentos() {
     final var pagamentos = entityManager
@@ -44,6 +49,7 @@ class HerancaTest extends EntityManagerTest {
     assertEquals(1, pagamentos.size());
   }
 
+  @Order(2)
   @Test
   void incluirPagamentoPedido() {
     final var pedido = entityManager.find(Pedido.class, 2);

@@ -18,10 +18,9 @@ class RemovendoEntidadesReferenciadasTest extends EntityManagerTest {
     pedido.getItens().forEach(entityManager::remove);
     entityManager.remove(pedido);
     entityManager.getTransaction().commit();
-
     entityManager.clear();
 
-    final var pedidoVerificacao = entityManager.find(Pedido.class, 1);
+    final var pedidoVerificacao = entityManager.find(Pedido.class, 2);
     assertNull(pedidoVerificacao);
   }
 }
