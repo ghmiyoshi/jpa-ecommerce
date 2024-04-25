@@ -49,4 +49,14 @@ class JoinTest extends EntityManagerTest {
         assertFalse(results.isEmpty());
         assertEquals(2, results.size());
     }
+
+    @Test
+    void userJoinFetch() {
+        final var jpql = "select p from Pedido p left join fetch p.pagamento pag left join fetch " +
+                "p.cliente left join fetch p.notaFiscal";
+        final var pedidos = entityManager.createQuery(jpql, Pedido.class).getResultList();
+
+        assertFalse(pedidos.isEmpty());
+        assertEquals(2, pedidos.size());
+    }
 }
