@@ -11,9 +11,10 @@ class PathExpressionTest extends EntityManagerTest {
     @Test
     void usarPathExpressions() {
         final var jpql = "select p.cliente.nome from Pedido p";
-        final var pedidos = entityManager.createQuery(jpql, Pedido.class).getResultList();
+        final var lista =
+                entityManager.createQuery(jpql, String[].class).getResultList();
 
-        assertFalse(pedidos.isEmpty());
+        assertFalse(lista.isEmpty());
     }
 
     @Test

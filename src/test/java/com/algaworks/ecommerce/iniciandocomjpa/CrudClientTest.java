@@ -62,7 +62,10 @@ class CrudClientTest extends EntityManagerTest {
 
     entityManager.getTransaction().begin();
     cliente.getPedidos()
-        .forEach(pedido -> pedido.getItens().forEach(entityManager::remove));
+        .forEach(pedido -> {
+          entityManager.remove(pedido.getNotaFiscal());
+          pedido.getItens().forEach(entityManager::remove);
+        });
     cliente.getPedidos().forEach(pedido -> entityManager.remove(pedido.getPagamento()));
     cliente.getPedidos().forEach(entityManager::remove);
     entityManager.remove(cliente);

@@ -17,7 +17,7 @@ class LeftJoinTest extends EntityManagerTest {
         List<Pedido> pedidos = entityManager.createQuery(jpql, Pedido.class).getResultList();
 
         assertFalse(pedidos.isEmpty());
-        assertEquals(2, pedidos.size());
+        assertEquals(1, pedidos.size());
     }
 
     @Test

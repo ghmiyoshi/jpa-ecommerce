@@ -16,3 +16,5 @@ INSERT INTO categorias (id, nome) VALUES (3, 'Informática');
 
 INSERT INTO produtos_categorias (produto_id, categoria_id) values (1, 2);
 INSERT INTO pagamentos (data_criacao, pedido_id, tipo_pagamento, numero_cartao, codigo_barras, nome_titular, status) VALUES (sysdate(), 1, 'cartao', '123-456', null, 'Gabriel', 'PROCESSANDO');
+
+INSERT INTO notas_fiscais (pedido_id, data_emissao, xml) VALUES (1, sysdate(), '<?xml version="1.0" encoding="UTF-8"?><xml></xml>');
