@@ -3,7 +3,9 @@ package jpql;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.models.Pedido;
 import jakarta.persistence.TypedQuery;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +39,19 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
         TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
 
         List<Object[]> lista = typedQuery.getResultList();
+        assertFalse(lista.isEmpty());
+    }
+
+    @Test
+    void usarBetween() {
+        final var jpql = "select p from Pedido p where p.dataCriacao between :dataInicial and " +
+                ":dataFinal";
+
+        TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
+        typedQuery.setParameter("dataInicial", LocalDateTime.now().minusDays(10));
+        typedQuery.setParameter("dataFinal", LocalDateTime.now());
+
+        List<Pedido> lista = typedQuery.getResultList();
         assertFalse(lista.isEmpty());
     }
 }
