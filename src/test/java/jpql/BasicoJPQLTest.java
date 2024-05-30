@@ -1,6 +1,7 @@
 package jpql;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.algaworks.ecommerce.EntityManagerTest;
@@ -9,7 +10,6 @@ import com.algaworks.ecommerce.models.Cliente;
 import com.algaworks.ecommerce.models.Pedido;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BasicoJPQLTest extends EntityManagerTest {
@@ -47,24 +47,20 @@ class BasicoJPQLTest extends EntityManagerTest {
     @Test
     void selecionarUmAtributoParaRetorno() {
         final var jpql = "select p.nome from Produto p";
+        final var lista = entityManager.createQuery(jpql, String.class).getResultList();
 
-        TypedQuery<String> typedQuery = entityManager.createQuery(jpql, String.class);
-        final var lista = typedQuery.getResultList();
         assertEquals(String.class, lista.get(0).getClass());
 
         final var jpqlCliente = "select p.cliente from Pedido p";
-        TypedQuery<Cliente> typedQueryCliente = entityManager.createQuery(jpqlCliente,
-                Cliente.class);
-        final var listaClientes = typedQueryCliente.getResultList();
-        assertEquals(Cliente.class, listaClientes.get(0).getClass());
+        final var clientes = entityManager.createQuery(jpqlCliente,
+                Cliente.class).getResultList();
+        assertEquals(Cliente.class, clientes.get(0).getClass());
     }
 
     @Test
     void projetarResultado() {
         final var jpql = "select id, nome from Produto";
-
-        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
-        final var result = typedQuery.getResultList();
+        final var result = entityManager.createQuery(jpql, Object[].class).getResultList();
 
         assertEquals(2, result.get(0).length);
 
@@ -74,12 +70,20 @@ class BasicoJPQLTest extends EntityManagerTest {
     @Test
     void projetarNoDTO() {
         final var jpql = "select new com.algaworks.ecommerce.dto.ProdutoDTO(id, nome) from Produto";
-        TypedQuery<ProdutoDTO> query = entityManager.createQuery(jpql, ProdutoDTO.class);
-
-        List<ProdutoDTO> products = query.getResultList();
+        final var products = entityManager.createQuery(jpql, ProdutoDTO.class).getResultList();
 
         assertNotNull(products);
 
         products.forEach(produto -> System.out.println(produto.getId() + " - " + produto.getNome()));
+    }
+
+    @Test
+    void ordenarResultados() {
+        final var jpql = "select c from Cliente c order by c.nome asc"; // desc
+        final var clientes = entityManager.createQuery(jpql, Cliente.class).getResultList();
+
+        assertFalse(clientes.isEmpty());
+
+        clientes.forEach(c -> System.out.println(c.getId() + ", " + c.getNome()));
     }
 }
