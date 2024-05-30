@@ -27,9 +27,8 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
     void usarIsNull() {
         final var jpql = "select p from Produto p where p.descricao is null";
 
-        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
-        List<Object[]> lista = typedQuery.getResultList();
         assertFalse(lista.isEmpty());
     }
 
@@ -37,9 +36,8 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
     void usarIsEmpty() {
         final var jpql = "select p from Produto p where p.categorias is empty";
 
-        TypedQuery<Object[]> typedQuery = entityManager.createQuery(jpql, Object[].class);
+        List<Object[]> lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
-        List<Object[]> lista = typedQuery.getResultList();
         assertFalse(lista.isEmpty());
     }
 
@@ -60,9 +58,8 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
     void usarExpressaoDiferente() {
         final var jpql = "select p from Produto p where p.preco <> 100";
 
-        TypedQuery<Produto> typedQuery = entityManager.createQuery(jpql, Produto.class);
+        List<Produto> lista = entityManager.createQuery(jpql, Produto.class).getResultList();
 
-        List<Produto> lista = typedQuery.getResultList();
         assertFalse(lista.isEmpty());
     }
 }
