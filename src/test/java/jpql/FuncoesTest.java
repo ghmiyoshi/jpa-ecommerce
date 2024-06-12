@@ -33,4 +33,15 @@ class FuncoesTest extends EntityManagerTest {
         assertFalse(lista.isEmpty());
         lista.forEach(arr -> System.out.println(arr[0] + " | " + arr[1] + " | " + arr[2]));
     }
+
+    @Test
+    public void aplicarFuncaoNumero() {
+        String jpql = "select abs(p.total), mod(p.id, 2), sqrt(p.total) from Pedido p " +
+                " where abs(p.total) > 1000";
+
+        final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
+
+        assertFalse(lista.isEmpty());
+        lista.forEach(arr -> System.out.println(arr[0] + " | " + arr[1] + " | " + arr[2]));
+    }
 }
