@@ -1,4 +1,4 @@
-package jpql;
+package com.algaworks.ecommerce.jpql;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 

@@ -1,4 +1,4 @@
-package jpql;
+package com.algaworks.ecommerce.jpql;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -20,7 +20,7 @@ class FuncoesTest extends EntityManagerTest {
     }
 
     @Test
-    public void aplicarFuncaoData() {
+    void aplicarFuncaoData() {
         // TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
         // current_date, current_time, current_timestamp
         // year(p.dataCriacao), month(p.dataCriacao), day(p.dataCriacao)
@@ -35,7 +35,7 @@ class FuncoesTest extends EntityManagerTest {
     }
 
     @Test
-    public void aplicarFuncaoNumero() {
+    void aplicarFuncaoNumero() {
         final var jpql = "select abs(p.total), mod(p.id, 2), sqrt(p.total) from Pedido p " +
                 " where abs(p.total) > 900";
 
@@ -43,5 +43,15 @@ class FuncoesTest extends EntityManagerTest {
 
         assertFalse(lista.isEmpty());
         lista.forEach(arr -> System.out.println(arr[0] + " | " + arr[1] + " | " + arr[2]));
+    }
+
+    @Test
+    void aplicarFuncaoColecao() {
+        final var jpql = "select size(p.itens) from Pedido p where size(p.itens) >= 1";
+
+        final var lista = entityManager.createQuery(jpql, Integer.class).getResultList();
+
+        assertFalse(lista.isEmpty());
+        lista.forEach(System.out::println);
     }
 }

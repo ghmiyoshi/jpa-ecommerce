@@ -1,4 +1,4 @@
-package jpql;
+package com.algaworks.ecommerce.jpql;
 
 import static com.algaworks.ecommerce.models.StatusPagamentoEnum.PROCESSANDO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
