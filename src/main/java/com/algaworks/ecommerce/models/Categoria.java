@@ -7,13 +7,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "categorias")
+@Entity
+@Table(name = "categorias")
 public class Categoria extends EntidadeBase {
 
   @Column(length = 100, nullable = false)

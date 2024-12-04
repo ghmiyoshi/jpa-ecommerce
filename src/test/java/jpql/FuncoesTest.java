@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 class FuncoesTest extends EntityManagerTest {
 
     @Test
-    public void aplicarFuncao() {
+    void aplicarFuncao() {
         // concat, length, locate, substring, lower, upper, trim
         final var jpql = "select c.nome, length(c.nome) from Categoria c " +
-                " where substring(c.nome, 1, 1) = 'N'";
+                " where substring(c.nome, 1, 1) = 'i'";
 
         final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
@@ -26,7 +26,7 @@ class FuncoesTest extends EntityManagerTest {
         // year(p.dataCriacao), month(p.dataCriacao), day(p.dataCriacao)
 
         final var jpql = "select hour(p.dataCriacao), minute(p.dataCriacao), second(p.dataCriacao) "
-                + " from Pedido p where hour(p.dataCriacao) > 18";
+                + " from Pedido p where hour(p.dataCriacao) > 0";
 
         final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
@@ -36,8 +36,8 @@ class FuncoesTest extends EntityManagerTest {
 
     @Test
     public void aplicarFuncaoNumero() {
-        String jpql = "select abs(p.total), mod(p.id, 2), sqrt(p.total) from Pedido p " +
-                " where abs(p.total) > 1000";
+        final var jpql = "select abs(p.total), mod(p.id, 2), sqrt(p.total) from Pedido p " +
+                " where abs(p.total) > 900";
 
         final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 

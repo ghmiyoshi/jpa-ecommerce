@@ -1,6 +1,7 @@
 package jpql;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.Pedido;
@@ -27,18 +28,18 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
     void usarIsNull() {
         final var jpql = "select p from Produto p where p.descricao is null";
 
-        List<Object[]> lista = entityManager.createQuery(jpql, Object[].class).getResultList();
+        final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
-        assertFalse(lista.isEmpty());
+        assertTrue(lista.isEmpty());
     }
 
     @Test
     void usarIsEmpty() {
         final var jpql = "select p from Produto p where p.categorias is empty";
 
-        List<Object[]> lista = entityManager.createQuery(jpql, Object[].class).getResultList();
+        final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
-        assertFalse(lista.isEmpty());
+        assertTrue(lista.isEmpty());
     }
 
     @Test
@@ -48,7 +49,7 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
 
         TypedQuery<Pedido> typedQuery = entityManager.createQuery(jpql, Pedido.class);
         typedQuery.setParameter("dataInicial", LocalDateTime.now().minusDays(10));
-        typedQuery.setParameter("dataFinal", LocalDateTime.now());
+        typedQuery.setParameter("dataFinal", LocalDateTime.now().plusDays(1));
 
         List<Pedido> lista = typedQuery.getResultList();
         assertFalse(lista.isEmpty());
