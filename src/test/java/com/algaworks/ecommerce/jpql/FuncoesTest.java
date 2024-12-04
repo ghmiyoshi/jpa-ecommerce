@@ -54,4 +54,13 @@ class FuncoesTest extends EntityManagerTest {
         assertFalse(lista.isEmpty());
         lista.forEach(System.out::println);
     }
+
+    @Test
+    void aplicarFuncaoNativa() {
+        final var jpql = "select function('dayname', p.dataCriacao) from Pedido p where function('acima_media_faturamento', p.total) = 1";
+        final var dayname = entityManager.createQuery(jpql, String.class).getSingleResult();
+
+        assertFalse(dayname.isEmpty());
+        System.out.println(dayname);
+    }
 }
