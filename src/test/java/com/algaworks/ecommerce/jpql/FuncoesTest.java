@@ -57,10 +57,26 @@ class FuncoesTest extends EntityManagerTest {
 
     @Test
     void aplicarFuncaoNativa() {
-        final var jpql = "select function('dayname', p.dataCriacao) from Pedido p where function('acima_media_faturamento', p.total) = 1";
+        final var jpql = "select function('dayname', p.dataCriacao) from Pedido p where "
+                + "function('acima_media_faturamento', p.total) = 1";
         final var dayname = entityManager.createQuery(jpql, String.class).getSingleResult();
 
         assertFalse(dayname.isEmpty());
         System.out.println(dayname);
+    }
+
+    @Test
+    void aplicarFuncaoAgregacao() {
+        // avg, count, min, max, sum
+        // final var jpql = "select count(p.id) from Pedido p";
+        // final var jpql = "select min(p.total) from Pedido p";
+        // final var jpql = "select max(p.total) from Pedido p";
+        final var jpql = "select sum(p.total) from Pedido p";
+        final var typedQuery = entityManager.createQuery(jpql, Number.class);
+
+        final var lista = typedQuery.getResultList();
+        assertFalse(lista.isEmpty());
+
+        lista.forEach(System.out::println);
     }
 }

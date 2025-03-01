@@ -38,13 +38,13 @@ public class Produto extends EntidadeBase {
 
   private BigDecimal preco;
 
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-  @JoinTable(name = "produtos_categorias",
-      joinColumns = @JoinColumn(name = "produto_id", nullable = false,
-          foreignKey = @ForeignKey(name = "fk_produtos_categorias_produto")),
-      inverseJoinColumns = @JoinColumn(name = "categoria_id", nullable = false,
-          foreignKey = @ForeignKey(name = "fk_produtos_categorias_categoria")))
-  private List<Categoria> categorias;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "produtos_categorias",
+        joinColumns = @JoinColumn(name = "produto_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_produtos_categorias_produto")),
+        inverseJoinColumns = @JoinColumn(name = "categoria_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_produtos_categorias_categoria")))
+    private List<Categoria> categorias;
 
   @OneToOne(mappedBy = "produto")
   private Estoque estoque;

@@ -12,7 +12,6 @@ class OperadoresLogicosTest extends EntityManagerTest {
     void usarOperadores() {
         final var jpql = "select p from Pedido p " +
                 " where (p.status = 'AGUARDANDO' or p.status = 'PAGO') and p.total > 100";
-
         final var pedidos = entityManager.createQuery(jpql, Pedido.class).getResultList();
         assertFalse(pedidos.isEmpty());
     }
