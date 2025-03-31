@@ -8,9 +8,9 @@ INSERT INTO clientes_detalhes (cliente_id, data_nascimento) VALUES (2, '1990-01-
 
 INSERT INTO pedidos (id, cliente_id, data_pedido, data_criacao, total, status) VALUES (1, 1,'2024-06-09 23:32:23', sysdate(),998.0, 'AGUARDANDO');
 INSERT INTO pedidos (id, cliente_id, data_pedido, data_criacao, total, status) VALUES (2, 2,'2024-06-09 23:32:23', sysdate(), 499.0,'AGUARDANDO');
-INSERT INTO item_pedidos (pedido_id, produto_id, preco_produto, quantidade) VALUES (1, 1, 499, 2);
-INSERT INTO item_pedidos (pedido_id, produto_id, preco_produto, quantidade) VALUES (2, 1, 499, 1);
-INSERT INTO item_pedidos (pedido_id, produto_id, preco_produto, quantidade) VALUES (1, 2, 300, 1);
+INSERT INTO item_pedidos (pedido_id, produto_id, quantidade) VALUES (1, 1, 2);
+INSERT INTO item_pedidos (pedido_id, produto_id, quantidade) VALUES (2, 1, 1);
+INSERT INTO item_pedidos (pedido_id, produto_id, quantidade) VALUES (1, 2, 1);
 
 INSERT INTO categorias (id, nome) VALUES (1, 'Eletrônicos');
 INSERT INTO categorias (id, nome) VALUES (2, 'Livros');

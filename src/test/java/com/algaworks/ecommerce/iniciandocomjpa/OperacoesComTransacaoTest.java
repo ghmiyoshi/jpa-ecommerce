@@ -45,13 +45,20 @@ class OperacoesComTransacaoTest extends EntityManagerTest {
 
   @Test
   void removerObjeto() {
-    final var produto = entityManager.find(Produto.class, 2L);
+    var produto = new Produto();
+    produto.setNome("Mouse Gamer Logitech");
+    produto.setDescricao("O melhor para seus jogos online");
+    produto.setPreco(new BigDecimal(1200));
 
     entityManager.getTransaction().begin();
+    entityManager.persist(produto);
+
+    produto = entityManager.find(Produto.class, produto.getId());
+
     entityManager.remove(produto);
     entityManager.getTransaction().commit();
 
-    final var produtoVerificacao = entityManager.find(Produto.class, 2L);
+    final var produtoVerificacao = entityManager.find(Produto.class, produto.getId());
 
     assertNull(produtoVerificacao);
   }

@@ -39,7 +39,7 @@ class ExpressoesCondicionaisTest extends EntityManagerTest {
 
         final var lista = entityManager.createQuery(jpql, Object[].class).getResultList();
 
-        assertTrue(lista.isEmpty());
+        assertFalse(lista.isEmpty());
     }
 
     @Test

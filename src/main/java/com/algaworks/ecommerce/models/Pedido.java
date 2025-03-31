@@ -71,7 +71,7 @@ public class Pedido extends EntidadeBase {
 
   @PrePersist
   public void prePersist() {
-    this.setDataUltimaAtualizacao(LocalDateTime.now());
+    this.setDataCriacao(LocalDateTime.now());
     this.calcularTotal();
   }
 
@@ -84,7 +84,7 @@ public class Pedido extends EntidadeBase {
   private void calcularTotal() {
     total = Optional.ofNullable(itens)
         .map(items -> items.stream()
-            .map(itemPedido -> itemPedido.getPrecoProduto()
+            .map(itemPedido -> itemPedido.getProduto().getPreco()
                 .multiply(BigDecimal.valueOf(itemPedido.getQuantidade())
                     .setScale(2, RoundingMode.HALF_UP)))
             .reduce(BigDecimal.ZERO, BigDecimal::add))

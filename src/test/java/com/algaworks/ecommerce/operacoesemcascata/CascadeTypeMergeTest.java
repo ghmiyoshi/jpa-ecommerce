@@ -3,7 +3,6 @@ package com.algaworks.ecommerce.operacoesemcascata;
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.AGUARDANDO;
 import static com.algaworks.ecommerce.models.StatusPedidoEnum.PAGO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.models.Categoria;
@@ -61,7 +60,6 @@ class CascadeTypeMergeTest extends EntityManagerTest {
     itemPedido.setPedido(pedido);
     itemPedido.setProduto(produto);
     itemPedido.setQuantidade(3);
-    itemPedido.setPrecoProduto(produto.getPreco());
 
     pedido.setItens(Arrays.asList(itemPedido)); // CascadeType.MERGE
 
@@ -92,7 +90,6 @@ class CascadeTypeMergeTest extends EntityManagerTest {
     itemPedido.setPedido(pedido); // CascadeType.MERGE
     itemPedido.setProduto(produto);
     itemPedido.setQuantidade(5);
-    itemPedido.setPrecoProduto(produto.getPreco());
 
     pedido.setItens(Arrays.asList(itemPedido));
 
@@ -103,6 +100,6 @@ class CascadeTypeMergeTest extends EntityManagerTest {
     entityManager.clear();
 
     final var itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
-    assertTrue(PAGO.equals(itemPedidoVerificacao.getPedido().getStatus()));
+    assertEquals(PAGO,itemPedidoVerificacao.getPedido().getStatus());
   }
 }

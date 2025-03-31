@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.PrePersist;
-import java.math.BigDecimal;
+import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +17,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = {"pedidoId", "produtoId"})
-@Entity(name = "item_pedidos")
+@Entity
+@Table(name = "item_pedidos")
 public class ItemPedido {
 
   @EmbeddedId
@@ -34,9 +35,6 @@ public class ItemPedido {
   @JoinColumn(name = "produto_id", nullable = false,
       foreignKey = @ForeignKey(name = "fk_item_pedido_produto"))
   private Produto produto;
-
-  @Column(name = "preco_produto", nullable = false)
-  private BigDecimal precoProduto;
 
   @Column(nullable = false)
   private int quantidade;

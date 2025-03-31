@@ -58,7 +58,6 @@ class RelacionamentosManyToOneTest extends EntityManagerTest {
     final var itemPedido = new ItemPedido();
 //    itemPedido.setPedidoId(pedido.getId()); IdClass
 //    itemPedido.setProdutoId(produto.getId()); IdClass
-    itemPedido.setPrecoProduto(produto.getPreco());
     itemPedido.setQuantidade(1);
     itemPedido.setPedido(pedido);
     itemPedido.setProduto(produto);

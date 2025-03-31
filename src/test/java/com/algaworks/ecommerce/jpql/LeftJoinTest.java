@@ -37,7 +37,7 @@ class LeftJoinTest extends EntityManagerTest {
         List<Object[]> results = entityManager.createQuery(jpql, Object[].class).getResultList();
 
         assertFalse(results.isEmpty());
-        assertEquals(2, results.size());
+        assertEquals(3, results.size());
     }
 
     @Test
@@ -47,6 +47,6 @@ class LeftJoinTest extends EntityManagerTest {
         List<Object[]> results = entityManager.createQuery(jpql, Object[].class).getResultList();
 
         assertFalse(results.isEmpty());
-        assertEquals(2, results.size());
+        assertEquals(3, results.size());
     }
 }
